@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DersProgramiDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DersProgrami">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GunID" Type="int" />
+          <Property Name="SaatID" Type="int" />
+          <Property Name="DersID" Type="int" />
+          <Property Name="SinifID" Type="int" />
+        </EntityType>
+        <EntityType Name="DersTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GunTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GunAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OgretmenTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SaatTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslangic" Type="nvarchar" MaxLength="20" />
+          <Property Name="Bitis" Type="nvarchar" MaxLength="20" />
+          <Property Name="DersSaatAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SinifTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sube" Type="nvarchar" MaxLength="10" />
+          <Property Name="Duzey" Type="int" />
+        </EntityType>
+        <Association Name="FK_DersProgrami_DersTable">
+          <End Role="DersTable" Type="Self.DersTable" Multiplicity="0..1" />
+          <End Role="DersProgrami" Type="Self.DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DersTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_GunTable">
+          <End Role="GunTable" Type="Self.GunTable" Multiplicity="0..1" />
+          <End Role="DersProgrami" Type="Self.DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="GunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_SaatTable">
+          <End Role="SaatTable" Type="Self.SaatTable" Multiplicity="0..1" />
+          <End Role="DersProgrami" Type="Self.DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaatTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="SaatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_SinifTable">
+          <End Role="SinifTable" Type="Self.SinifTable" Multiplicity="0..1" />
+          <End Role="DersProgrami" Type="Self.DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinifTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="SinifID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DersProgramiDbModelStoreContainer">
+          <EntitySet Name="DersProgrami" EntityType="Self.DersProgrami" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DersTable" EntityType="Self.DersTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GunTable" EntityType="Self.GunTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgretmenTable" EntityType="Self.OgretmenTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaatTable" EntityType="Self.SaatTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinifTable" EntityType="Self.SinifTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DersProgrami_DersTable" Association="Self.FK_DersProgrami_DersTable">
+            <End Role="DersTable" EntitySet="DersTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_GunTable" Association="Self.FK_DersProgrami_GunTable">
+            <End Role="GunTable" EntitySet="GunTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_SaatTable" Association="Self.FK_DersProgrami_SaatTable">
+            <End Role="SaatTable" EntitySet="SaatTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_SinifTable" Association="Self.FK_DersProgrami_SinifTable">
+            <End Role="SinifTable" EntitySet="SinifTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DersProgramiDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DersTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DersProgrami" Relationship="DersProgramiDbModel.FK_DersProgrami_DersTable" FromRole="DersTable" ToRole="DersProgrami" />
+        </EntityType>
+        <EntityType Name="GunTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DersProgrami" Relationship="DersProgramiDbModel.FK_DersProgrami_GunTable" FromRole="GunTable" ToRole="DersProgrami" />
+        </EntityType>
+        <EntityType Name="SaatTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslangic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Bitis" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DersSaatAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DersProgrami" Relationship="DersProgramiDbModel.FK_DersProgrami_SaatTable" FromRole="SaatTable" ToRole="DersProgrami" />
+        </EntityType>
+        <EntityContainer Name="DersProgramiDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DersTable" EntityType="Self.DersTable" />
+          <EntitySet Name="GunTable" EntityType="Self.GunTable" />
+          <EntitySet Name="SaatTable" EntityType="Self.SaatTable" />
+          <EntitySet Name="DersProgrami" EntityType="DersProgramiDbModel.DersProgrami" />
+          <EntitySet Name="OgretmenTable" EntityType="DersProgramiDbModel.OgretmenTable" />
+          <EntitySet Name="SinifTable" EntityType="DersProgramiDbModel.SinifTable" />
+          <AssociationSet Name="FK_DersProgrami_DersTable" Association="DersProgramiDbModel.FK_DersProgrami_DersTable">
+            <End Role="DersTable" EntitySet="DersTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_GunTable" Association="DersProgramiDbModel.FK_DersProgrami_GunTable">
+            <End Role="GunTable" EntitySet="GunTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_SaatTable" Association="DersProgramiDbModel.FK_DersProgrami_SaatTable">
+            <End Role="SaatTable" EntitySet="SaatTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DersProgrami_SinifTable" Association="DersProgramiDbModel.FK_DersProgrami_SinifTable">
+            <End Role="SinifTable" EntitySet="SinifTable" />
+            <End Role="DersProgrami" EntitySet="DersProgrami" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DersProgrami">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GunID" Type="Int32" />
+          <Property Name="SaatID" Type="Int32" />
+          <Property Name="DersID" Type="Int32" />
+          <Property Name="SinifID" Type="Int32" />
+          <NavigationProperty Name="DersTable" Relationship="DersProgramiDbModel.FK_DersProgrami_DersTable" FromRole="DersProgrami" ToRole="DersTable" />
+          <NavigationProperty Name="GunTable" Relationship="DersProgramiDbModel.FK_DersProgrami_GunTable" FromRole="DersProgrami" ToRole="GunTable" />
+          <NavigationProperty Name="SaatTable" Relationship="DersProgramiDbModel.FK_DersProgrami_SaatTable" FromRole="DersProgrami" ToRole="SaatTable" />
+          <NavigationProperty Name="SinifTable" Relationship="DersProgramiDbModel.FK_DersProgrami_SinifTable" FromRole="DersProgrami" ToRole="SinifTable" />
+        </EntityType>
+        <EntityType Name="OgretmenTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SinifTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sube" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Duzey" Type="Int32" />
+          <NavigationProperty Name="DersProgrami" Relationship="DersProgramiDbModel.FK_DersProgrami_SinifTable" FromRole="SinifTable" ToRole="DersProgrami" />
+        </EntityType>
+        <Association Name="FK_DersProgrami_DersTable">
+          <End Type="DersProgramiDbModel.DersTable" Role="DersTable" Multiplicity="0..1" />
+          <End Type="DersProgramiDbModel.DersProgrami" Role="DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DersTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_GunTable">
+          <End Type="DersProgramiDbModel.GunTable" Role="GunTable" Multiplicity="0..1" />
+          <End Type="DersProgramiDbModel.DersProgrami" Role="DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GunTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="GunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_SaatTable">
+          <End Type="DersProgramiDbModel.SaatTable" Role="SaatTable" Multiplicity="0..1" />
+          <End Type="DersProgramiDbModel.DersProgrami" Role="DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaatTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="SaatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DersProgrami_SinifTable">
+          <End Type="DersProgramiDbModel.SinifTable" Role="SinifTable" Multiplicity="0..1" />
+          <End Type="DersProgramiDbModel.DersProgrami" Role="DersProgrami" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinifTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DersProgrami">
+              <PropertyRef Name="SinifID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DersProgramiDbModelStoreContainer" CdmEntityContainer="DersProgramiDbEntities">
+          <EntitySetMapping Name="DersTable">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.DersTable">
+              <MappingFragment StoreEntitySet="DersTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GunTable">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.GunTable">
+              <MappingFragment StoreEntitySet="GunTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GunAdi" ColumnName="GunAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaatTable">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.SaatTable">
+              <MappingFragment StoreEntitySet="SaatTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Baslangic" ColumnName="Baslangic" />
+                <ScalarProperty Name="Bitis" ColumnName="Bitis" />
+                <ScalarProperty Name="DersSaatAdi" ColumnName="DersSaatAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DersProgrami">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.DersProgrami">
+              <MappingFragment StoreEntitySet="DersProgrami">
+                <ScalarProperty Name="SinifID" ColumnName="SinifID" />
+                <ScalarProperty Name="DersID" ColumnName="DersID" />
+                <ScalarProperty Name="SaatID" ColumnName="SaatID" />
+                <ScalarProperty Name="GunID" ColumnName="GunID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgretmenTable">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.OgretmenTable">
+              <MappingFragment StoreEntitySet="OgretmenTable">
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinifTable">
+            <EntityTypeMapping TypeName="DersProgramiDbModel.SinifTable">
+              <MappingFragment StoreEntitySet="SinifTable">
+                <ScalarProperty Name="Duzey" ColumnName="Duzey" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
